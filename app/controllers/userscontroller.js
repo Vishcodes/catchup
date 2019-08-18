@@ -36,7 +36,7 @@ module.exports.logout = (req, res) => {
     const {user, token} = req
     console.log(token)
     
-    User.findByIdAndUpdate(user_id, { $pull: { tokens: {token: token}}})
+    User.findByIdAndUpdate(user._id, { $pull: { tokens: {token: token}}})
     .then( function(){
         res.send({notice: 'successfully logged out'})
     })
@@ -45,68 +45,109 @@ module.exports.logout = (req, res) => {
     })
 
 }
-// to send friend request
-module.exports.add = (req, res) => { 
+
+module.exports.add = (req, res) => {
     const newUserId = req.params.id
-    console.log(newUserId)
-    // First find whether the user exist or not
-    User.findById(newUserId)
-        .then(newuser => {
-            if(newuser){
-                //If user present find the user is already a friend 
-                User.findById(req.user._id)
-                .then(user => {
-                    if(user){
-                        if(!user.friends.includes(newUserId)){
-                            if(!user.friendrequests.includes(newUserId)){
-                                user.friendrequests.push(newUserId)
-                                user.save()
-                                res.json("Friend request send")
-                            }else{
-                                res.json('Your request is pending')
-                            }
+    const userId = req.user._id
+    // console.log(newUserId)
+    // console.log(userId)
+    User.findById(userId)
+        .then(user => {
+            // console.log(user)
+            if(user){
+                if(!user.friends.includes(newUserId)){
+                    if(!user.friendrequests.includes(newUserId)){
+                        if(!user.sentrequests.includes(newUserId)){
+                            user.sentrequests.push(newUserId)
+                            user.save()
+                            User.findById(newUserId)
+                                .then(newUser => {
+                                    // console.log(newUser.friendrequests)
+                                    if(newUser){
+                                        if(!newUser.friends.includes(userId)){
+                                            if(!newUser.friendrequests.includes(userId)){
+                                                newUser.friendrequests.push(userId)
+                                                newUser.save()
+                                                res.json('req send')
+                                            }else{
+                                                res.json('error')
+                                            }
+                                        }else{
+                                            res.json('already friend')
+                                        }
+                                    }else{
+                                        res.status('404').json('user not found')
+                                    }
+                                })
+                                .catch(err =>{
+                                    res.status('404').json(err)
+                                })
                         }else{
-                            res.json('You are already Friend with this person')
+                            res.json('req pending')
                         }
+                    }else {
+                        res.json('profile in requested list')
                     }
-                })
-                .catch(err => {
-                    res.json(err)
-                })
-            } else {
-                res.json('Person not found')
+                   
+                }else{
+                    res.json('you are already friend')
+                }
+            }else {
+                res.json('Are you logged in ???')
             }
         })
         .catch(err => {
-            res.json (err)
+            res.status('404').json(err)
         })
 }
 
-module.exports.accept = (req, res) => {
-    const newuser = req.params.id
-    console.log(newuser)
-    console.log(req.user._id)
-    User.findById(req.user._id)
+module.exports.accept =(req, res) => {
+    const userId = req.user._id
+    const newUserId = req.params.id
+    User.findById(userId)
         .then(user => {
             if(user){
-                if(!user.friends.includes(newuser)){
-                    if(user.friendrequests.includes(newuser)){
-                        user.friendrequests.splice(user.friendrequests.indexOf('newuser'),1)
-                        user.friends.push(newuser)
+                if(!user.friends.includes(newUserId)){
+                    if(user.friendrequests.includes(newUserId)){
+                        user.friendrequests.splice(user.friendrequests.indexOf(newUserId), 1)
+                        user.friends.push(newUserId)
                         user.save()
-                        res.json('Friend request accepted')
-                    }else {
-                        res.json('no request found')
-                    } 
+                        User.findById(newUserId)
+                            .then(newUser => {
+                                if(newUser){
+                                    if(!newUser.friends.includes(userId)){
+                                        if(newUser.sentrequests.includes(userId)){
+                                            newUser.sentrequests.splice(newUser.sentrequests.indexOf(userId))
+                                            newUser.friends.push(userId)
+                                            newUser.save()
+                                            res.json('accepted')
+                                        } else {
+                                            res.json('no request')
+                                        }
+                                    } else {
+                                        res.json('Already friend')
+                                    }
+                                } else {
+                                    res.json('No Profile found')
+                                }
+                            })
+                            .catch(err => {
+                                res.status('404').json(err)
+                            })
+                    } else {
+                        res.status('404').json('no request found')
+                    }
                 }else {
-                    res.json('Already accepted')
+                    res.json('Already friend')
                 }
-                  
             }else {
-                res.status('404').json('Try after some time')
-            }
+                    res.json('Something went wrong')     
+            } 
         })
         .catch(err => {
-            res.status('404').json('something went wrong')
+            res.status('404').json(err)
         })
 }
+
+
+
