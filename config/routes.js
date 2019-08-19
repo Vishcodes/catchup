@@ -11,7 +11,12 @@ const postController = require('../app/controllers/postController')
 router.post('/register', usersController.register)
 router.post('/login', usersController.login)
 router.get('/account', authenticateUser, usersController.show)
-router.delete('users/logout', authenticateUser, usersController.logout)
+router.delete('/logout', authenticateUser, usersController.logout)
+router.post('/add/:id', authenticateUser, usersController.add)
+router.post('/accept/:id', authenticateUser, usersController.accept)
+router.post('/cancel/:id', authenticateUser,usersController.cancelreq)
+router.post('/remove/:id', authenticateUser, usersController.remove)
+
 
 
 router.post('/profile', authenticateUser, profileController.create)
@@ -22,9 +27,5 @@ router.delete('/profile/:id', authenticateUser, profileController.destroy)
 router.post('/posts', authenticateUser, upload.single('post-img'), postController.create)
 router.get('/posts', authenticateUser, postController.list)
 router.delete('/posts/:id', authenticateUser, postController.destroy)
-
-
-router.post('/users/:id/add', authenticateUser, usersController.add)
-router.post('/users/:id/accept', authenticateUser, usersController.accept)
 
 module.exports = router

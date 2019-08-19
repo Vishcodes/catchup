@@ -13,6 +13,18 @@ const postSchema =  new Schema({
     image : {
         type : String
     },
+    comments:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    Likes: [
+        {
+            title: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     createdAt : {
         type : Date,
         default : Date.now()

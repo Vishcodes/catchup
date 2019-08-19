@@ -5,10 +5,8 @@ import {Link} from 'react-router-dom'
 function MainNav() {
     return (
         <div className="main-nav">
-          
-            <ul>
-                <li> <Link to=""> About</Link></li>
-            </ul>
+        
+          <h2> CATCHUP </h2>
         </div>
     )
 }
