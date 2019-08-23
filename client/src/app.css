@@ -2,27 +2,32 @@ body{
     margin: 0%;
     box-sizing: border-box;
     font-family: Montserrat,sans-serif;
+    overflow-x: hidden;
+    width: 100vw;
+    background: #dcdde1;
 }
 .Main {
-    background-image: url('../src/images/main1.jpg');
+    background-image: url('./images/main3.jpg');
     background-size: cover;
     height: 100vh;
+    position: relative;
 }
 .card {
     display: block;
-    background: white;
+    background: #2c3e50a0;
     position: absolute;
-    top: 15rem;
-    left: 45rem;
+    top: 50%;
+    left: 50%;
     width: 18vw;
-    min-height: 50vh;
+    min-height: 40vh;
     padding: 1rem 2rem;
     border-radius: 5px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
-
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    transform: translate(-50%, -50%)
 }
 .card h2 {
     padding: 0.5rem 0rem;
+    color: #fff;
 }
 .card form{
     display: flex;
@@ -31,47 +36,103 @@ body{
     align-items: center;
 }
 .main-input{
+    border-radius: 3px;
+    width: 80%;
+    background: rgba(255, 255, 255, .25);
     height: 2rem;
+    border: none;
+    text-align: center; 
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    transition: all .3s;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.main-input:hover{
+    background: rgba(255, 255, 255, .4);
+}
+
+.main-input:focus{
     width: 100%;
-    text-align: center;
-    border-radius: 100px;
-    border: 2px solid #7ed6df;
-    margin-top: 1rem;
+    background: rgba(255, 255, 255, .4);
+}
+.main-input::placeholder{
+    color: #fff8;
+    font-weight: 400;
+    font-size: 1rem;
 }
 .main-button{
     padding: .8rem;
     margin-top: 1rem;
-    background: #7ed6df;
+    background: #2c3e5080;
     border: none;
-    border-radius: 100px;
+    border-radius: 3px;
     width: 40%;
     color: #fff;
     font-weight: bolder;
+    outline: none;
 }
 
-
-
 .loginform{
-    background: #fff;
+    background: #2c3e50c0;
     min-height: 5vh;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
-
-}
-
-.loginform{
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
     display: flex;
-    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    width: 100vw;
+    position: relative;
 }
 
- .loginButton{
-    padding: .4rem;
-    background: #7ed6df;
-    border: none;
-    border-radius: 100px;
-    width: 5vw;
+.loginform h2 {
+    color: #fff;
+    margin: 0 auto 0 0;
+    padding: .9rem;
+}
+
+
+
+.loginButton{
+    padding: .6rem 1.2rem;
+    background: transparent;
+    border: 1px solid #fffa;
+    border-radius: 3px;
     color: #fff;
     font-weight: bolder;
+    outline: none;
 }
+
+.logInput {
+    text-align: center;
+    border-radius: 100px;
+    border: none;  
+    outline: none;
+    padding: 5px 0;
+    margin-right: 2rem;
+}
+
+.logInput > * {
+    margin: 0 5px;
+}
+
+.logInput > input {
+    border-radius: 3px;
+    
+    background: rgba(255, 255, 255, .25);
+    height: 2rem;
+    border: none;
+    text-align: center; 
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    transition: all .3s;
+    color: #fff;
+    font-size: 1rem;
+}
+.logInput > input::placeholder{
+    color: #fff8;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
 

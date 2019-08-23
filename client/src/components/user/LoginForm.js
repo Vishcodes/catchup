@@ -35,20 +35,19 @@ class Login extends React.Component{
 
     render(){
         return(
-            
-            <form onSubmit={this.handleSubmit} className="loginform">
-                <div className="logInput">
-                    <label>
-                        Email
-                        <input type='email' value={this.state.email} onChange={this.handleChange} name='email'></input>
-                    </label>
-                    <label>
-                        Password
-                        <input type='password' value={this.state.password} onChange={this.handleChange} name='password'></input>
-                    </label>
+            <React.Fragment>
+                <div className="loginform">
+                    <h2 className="logo"> CATCHUP </h2>
+                    <form onSubmit={this.handleSubmit} >
+                        <div className="logInput">
+                            <input type='email' value={this.state.email} onChange={this.handleChange} name='email' placeholder='Email'></input>
+                            <input type='password' value={this.state.password} onChange={this.handleChange} name='password' placeholder='Password'></input>
+                            <button type='submit' className="loginButton">Login</button>
+
+                        </div>
+                    </form>
                 </div>
-                <input type='submit' value='Login' className="loginButton"></input>
-            </form>
+            </React.Fragment>
         )
     }
 }
