@@ -4,8 +4,13 @@ module.exports.register = (req, res) => {
     const body = req.body
     const user = new User(body)
     user.save()
-        .then(function(user) {
-            res.json(user)
+        .then(user => {
+            return user.generateToken()
+            // user.token = user.generateToken()
+            // res.json(user)
+        })
+        .then(response => {
+            res.json({response})
         })
         .catch(err => {
             res.json(err)
@@ -18,9 +23,8 @@ module.exports.login = (req, res) => {
         .then(user => {
             return user.generateToken()
         })
-        .then(token => {
-            res.json({token,body})
-            // res.json({token})
+        .then(response => {
+            res.json({response})
         })
         .catch(err => {
             res.json(err)
@@ -156,7 +160,7 @@ module.exports.cancelreq = (req, res) => {
     User.findById(userId)
         .then(user => {
             if(user){
-                console.log(user)
+                // console.log(user)
                 if(user.sentrequests.includes(newUserId)){
                     user.sentrequests.splice(user.sentrequests.indexOf(newUserId), 1)
                     user.save()
@@ -217,6 +221,17 @@ module.exports.remove = (req, res) => {
             }else{
                 res.status('401').json('Are you logged in')
             }
+        })
+        .catch(err => {
+            res.json(err)
+        })
+}
+
+module.exports.search = (req, res) => {
+    const name = req.params.name
+    User.find({username: {$regex: '.*' + name + '.*'}}).select({'username': 1})
+        .then(users => {
+            res.json(users)
         })
         .catch(err => {
             res.json(err)

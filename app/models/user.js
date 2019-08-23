@@ -48,12 +48,7 @@ const userSchema = new Schema({
             ref: 'User'
         }
     ],
-    posts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Post'
-        }
-    ],
+   
     tokens: [
         {
             token: {
@@ -98,7 +93,7 @@ userSchema.methods.generateToken = function(){
 
     return user.save()
         .then(function(user){
-            return Promise.resolve(token)
+            return Promise.resolve({token,user})
         })
         .catch(function(err){
             return Promise.reject(err)

@@ -3,8 +3,8 @@ body{
     box-sizing: border-box;
     font-family: Montserrat,sans-serif;
 }
-.App {
-    background-image: url('../src/images/main.gif');
+.Main {
+    background-image: url('../src/images/main1.jpg');
     background-size: cover;
     height: 100vh;
 }
@@ -12,13 +12,13 @@ body{
     display: block;
     background: white;
     position: absolute;
-    top: 7rem;
-    left: 10rem;
+    top: 15rem;
+    left: 45rem;
     width: 18vw;
     min-height: 50vh;
     padding: 1rem 2rem;
     border-radius: 5px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
 
 }
 .card h2 {
@@ -49,28 +49,29 @@ body{
     font-weight: bolder;
 }
 
-.main-nav{
-    padding-left: 90rem;
+
+
+.loginform{
+    background: #fff;
+    min-height: 5vh;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+
 }
-.main-nav li{
-    display: inline-block;
-    padding: 2rem;
-    font-weight: bold;
-    text-decoration: none;
+
+.loginform{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ .loginButton{
+    padding: .4rem;
+    background: #7ed6df;
+    border: none;
+    border-radius: 100px;
+    width: 5vw;
     color: #fff;
-    
+    font-weight: bolder;
 }
 
-.main-nav>li>Link{
-    text-decoration: none;
-}
-
-.main-nav Link:hover:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #2ed573;
-}
