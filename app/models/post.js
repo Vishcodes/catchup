@@ -6,9 +6,15 @@ const postSchema =  new Schema({
     title :{
         type : String
     },
+    body: {
+        type: String
+    },
     userId : {
         type : Schema.Types.ObjectId,
         ref : 'User'
+    },
+    creator: {
+        type: String
     },
     image : {
         type : String

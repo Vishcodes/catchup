@@ -10,12 +10,12 @@ body{
     background-image: url('./images/main3.jpg');
     background-size: cover;
     height: 100vh;
-    position: relative;
+    position: absolute;
 }
 .card {
     display: block;
     background: #2c3e50a0;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 18vw;

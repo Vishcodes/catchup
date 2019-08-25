@@ -30,6 +30,9 @@ const userSchema = new Schema({
         minlength: 6,
         maxlength: 120
     },
+    image : {
+        type : String
+    },
     friends:[
         {
             type: Schema.Types.ObjectId,
