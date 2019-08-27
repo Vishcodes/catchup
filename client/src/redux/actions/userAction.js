@@ -1,8 +1,6 @@
 import axios from '../../components/config/axios'
 
 export const startSetUserList = (name,history) => dispatch => {
-  console.log(name)
-
     axios.get(`catchup/search/${name}`, {
         headers: {
           'x-auth': localStorage.getItem('user-auth')
@@ -11,7 +9,6 @@ export const startSetUserList = (name,history) => dispatch => {
       .then(response => {
         dispatch(setUserList(response.data))
         history.push('/catchup/users')
-        console.log(response)
       })
 }
 

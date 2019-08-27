@@ -4,3 +4,9 @@
     margin: 1rem 15rem;
     justify-content: space-around;
 }
+
+.message {
+    text-align: center;
+    margin: 20rem;
+    font-size: 3rem;
+}

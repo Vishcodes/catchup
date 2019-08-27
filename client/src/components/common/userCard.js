@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import StarIcon from '@material-ui/icons/Star';
 import TextsmsIcon from '@material-ui/icons/Textsms';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import defaultImg from '../../images/user3.jpg'
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard(props) {
+export default function UserCard(props) {
   const classes = useStyles();
 
   return (

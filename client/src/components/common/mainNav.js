@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -44,14 +44,14 @@ class MainNav extends React.Component{
       return (
           <div className="main-nav">
             <div className="logo">
-              <h2 > CATCHUP </h2>
+              <h2><Link to="/catchup/home"> CATCHUP </Link></h2>
             </div>
 
               <div className="search">
                   <form onSubmit={ this.handleSubmit }>
                     <input type="text" placeholder="Search" onChange={ this.handleChange } />
                     <button type="submit">
-                      <SearchIcon onClick={() => console.log('yuuftygft')}/>
+                      <SearchIcon/>
                     </button>
                   </form>
               </div>

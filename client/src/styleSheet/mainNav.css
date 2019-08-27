@@ -14,7 +14,15 @@
 .main-nav .logo > h2{
     padding-left: 2.5rem;
     color: #fff;
+    text-decoration: none;
 }
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem
+}
+
 .main-nav .search {
     width: 60%;
     display: flex;

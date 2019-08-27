@@ -3,13 +3,9 @@ import axios from '../../components/config/axios'
 export const registerNewUser = (data, history) => dispatch => {
     axios.post(`catchup/register`, data)
         .then(res => {
-            console.log('response',res)
-
             localStorage.setItem('user-auth', res.data.response.token)
             dispatch(setUser(res.data.response.user))
             history.push(`/catchup/home`)
-            console.log(history)
-            console.log(res.data)
         })
         .catch(err => console.log(err))
 }
@@ -20,9 +16,6 @@ export const loginUser = (data, history) => dispatch => {
             localStorage.setItem('user-auth', res.data.response.token)
             dispatch(setUser(res.data.response.user))
             history.push(`/catchup/home`)
-            console.log(history)
-            console.log(res.data.response.token)
-            console.log(res.data.response.user)
         })
         .catch(err => console.log(err))
 }
@@ -60,7 +53,6 @@ export const StartSetUser = () => {
         })
         .then((response) => {
             dispatch(setUser(response.data))
-            console.log(response.data)
         })
     }
 }

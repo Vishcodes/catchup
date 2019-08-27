@@ -11,14 +11,14 @@ import App from './App'
 
 const store = configureStore()
 store.subscribe(() => {
-    console.log(store.getState())
+    store.getState()
 })
 
 if(localStorage.getItem('user-auth')){
     store.dispatch(StartSetUser())
 }
 
-console.log(store.getState())
+// console.log(store.getState())
 
 const jsx = (
     <Provider store={store}>

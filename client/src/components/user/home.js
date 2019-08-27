@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import MainNav from '../common/mainNav'
-import ImgMediaCard from '../common/postCard'
+import PostCard from '../common/postCard'
 import {startSetPosts} from '../../redux/actions/postAction'
 import SimpleCard from '../common/addPost'
 import '../../styleSheet/home.css'
@@ -20,7 +20,7 @@ class ListPost extends React.Component{
                 <SimpleCard/>
 
                     {this.props.posts.map(post => 
-                        <ImgMediaCard key={post._id}
+                        <PostCard key={post._id}
                             creator={post.creator}
                             title={post.title}
                             body={post.body}
