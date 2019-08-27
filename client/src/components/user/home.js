@@ -1,6 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
-// import _ from 'lodash'
 import {connect} from 'react-redux'
 import MainNav from '../common/mainNav'
 import ImgMediaCard from '../common/postCard'
@@ -13,6 +11,7 @@ class ListPost extends React.Component{
     componentDidMount(){
         this.props.startSetPosts()
     }
+
     render(){
         return(
             <div>
@@ -21,7 +20,7 @@ class ListPost extends React.Component{
                 <SimpleCard/>
 
                     {this.props.posts.map(post => 
-                        <ImgMediaCard
+                        <ImgMediaCard key={post._id}
                             creator={post.creator}
                             title={post.title}
                             body={post.body}

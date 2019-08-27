@@ -16,7 +16,7 @@ function Main(){
             ) : (
               <div>
                 <Login/>
-                 <Register/> 
+                <Register/> 
               </div>
             )}
                

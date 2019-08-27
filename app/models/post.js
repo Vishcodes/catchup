@@ -1,7 +1,6 @@
 const mongoose = require('../../config/database')
 
 const Schema = mongoose.Schema
-
 const postSchema =  new Schema({
     title :{
         type : String
@@ -19,7 +18,6 @@ const postSchema =  new Schema({
     image : {
         type : String
     },
-    
     createdAt : {
         type : Date,
         default : Date.now()
@@ -40,13 +38,7 @@ const postSchema =  new Schema({
                 type: String
             } 
         }
-
     ]
 })
-
-
 const Post = mongoose.model('Post', postSchema)
-
 module.exports = Post
-
-

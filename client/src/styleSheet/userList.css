@@ -1,0 +1,6 @@
+.userlist{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 15rem;
+    justify-content: space-around;
+}

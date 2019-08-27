@@ -53,7 +53,7 @@ export default function SimpleCard() {
                         style={{  width: '30rem' }}
                     />
                 </div>
-                <div style={{ paddingTop: '1.5rem'}}>
+                <div style={{ paddingTop: '3rem'}}>
                     <input
                         accept="image/*"
                         style={{ display: 'none' }}

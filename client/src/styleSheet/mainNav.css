@@ -20,7 +20,13 @@
     display: flex;
     justify-content: center; 
 }
-.main-nav .search > input {
+
+.main-nav .search form{
+    width: 100%;
+    text-align: center;
+}
+
+.main-nav .search input {
     border-radius: 3px;
     width: 20%;
     background: rgba(255, 255, 255, .2);
@@ -35,33 +41,36 @@
     
 }
 
-.main-nav .search > input::placeholder {
+.main-nav .search input::placeholder {
     color: #fff8;
     font-weight: 400;
     font-size: 1rem;
 }
 
-.main-nav .search > input:hover {
+.main-nav .search input:hover {
     background: rgba(255, 255, 255, .4);
 }
 
-.main-nav .search > input:focus {
+.main-nav .search input:focus {
     background: rgba(255, 255, 255, .4);
     width: 30%;
 }
 
-.main-nav .search > span {
+.main-nav .search button {
     display: inline-block;
     position: relative;
     right: 2.1rem;
-    top:.3rem;
+    top:.4rem;
     z-index: 2;
     color: #fff;
     cursor: pointer;
     transition: all .2s;
+    border: none;
+    background: transparent;
+    outline: none;
 }
 
-.main-nav .search > span:hover {
+.main-nav .search button:hover {
     transform: scale(1.1);
 }
 

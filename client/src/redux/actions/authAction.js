@@ -3,8 +3,10 @@ import axios from '../../components/config/axios'
 export const registerNewUser = (data, history) => dispatch => {
     axios.post(`catchup/register`, data)
         .then(res => {
-            localStorage.setItem('user-auth', res.data.token)
-            dispatch(setUser(res.data))
+            console.log('response',res)
+
+            localStorage.setItem('user-auth', res.data.response.token)
+            dispatch(setUser(res.data.response.user))
             history.push(`/catchup/home`)
             console.log(history)
             console.log(res.data)
@@ -12,7 +14,7 @@ export const registerNewUser = (data, history) => dispatch => {
         .catch(err => console.log(err))
 }
 
-export const loginUser = (data, history) => dispatch => {
+export const loginUser = (data, history) => dispatch => {   
     axios.post(`catchup/login`, data)
         .then(res => {
             localStorage.setItem('user-auth', res.data.response.token)
@@ -24,6 +26,21 @@ export const loginUser = (data, history) => dispatch => {
         })
         .catch(err => console.log(err))
 }
+
+export const logoutUser = history => dispatch => {
+    axios.delete('catchup/logout',{
+        headers: {
+            'x-auth': localStorage.getItem('user-auth')
+        }
+    })
+    .then( () => {
+        localStorage.removeItem('user-auth')
+        dispatch(setUser({}))
+        history.push(`/catchup`)
+    })
+    .catch( err => console.log(err))
+}
+
 
 export const setUser = user => {
     return {
@@ -47,5 +64,6 @@ export const StartSetUser = () => {
         })
     }
 }
+
 
 

@@ -38,7 +38,7 @@ module.exports.show = (req, res) => {
 
 module.exports.logout = (req, res) => {
     const {user, token} = req
-    console.log(token)
+    // console.log(token)
     
     User.findByIdAndUpdate(user._id, { $pull: { tokens: {token: token}}})
     .then( function(){
@@ -229,7 +229,9 @@ module.exports.remove = (req, res) => {
 
 module.exports.search = (req, res) => {
     const name = req.params.name
-    User.find({username: {$regex: '.*' + name + '.*'}}).select({'username': 1})
+    // User.find({username: {$regex: '.*' + name + '.*'}}).select({'username': 1})
+    User.find({username: {$regex: '.*' + name + '.*'}})
+
         .then(users => {
             res.json(users)
         })
