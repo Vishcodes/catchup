@@ -34,6 +34,39 @@ export const logoutUser = history => dispatch => {
     .catch( err => console.log(err))
 }
 
+export const startAddFriend = (id) => dispatch => {
+    console.log(id)
+    axios.post(`catchup/add/${id}`,{},{
+      headers: {
+        'x-auth': localStorage.getItem('user-auth')
+      }
+    })
+    .then(response => {
+        console.log(response.data)
+        dispatch(setUser(response.data))
+    })
+    .catch(err => {
+      (console.log(err))
+    })
+}
+
+export const startRemoveFriend = (id) => dispatch => {
+    console.log(id)
+    axios.post(`catchup/cancel/${id}`,{},{
+      headers: {
+        'x-auth': localStorage.getItem('user-auth')
+      }
+    })
+  
+    .then(response => {
+        console.log(response.data)
+        dispatch(setUser(response.data))
+    })
+    .catch(err => {
+      (console.log(err))
+    })
+}
+
 
 export const setUser = user => {
     return {

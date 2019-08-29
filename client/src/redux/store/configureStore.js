@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import authReducer from '../reducers/authReducer'
 import postReducer from '../reducers/postReducer'
@@ -15,7 +15,7 @@ const configureStore = () => {
         
     
         // posts: postReducer
-    }), applyMiddleware(thunk))
+    }), compose(applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
     return state
 }
 

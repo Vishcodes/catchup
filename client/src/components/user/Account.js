@@ -9,6 +9,7 @@ function Account(props) {
             <p>id:{ props.user._id }</p>
             <p>username:{ props.user.username }</p>
             <p>email:{ props.user.email }</p>
+            <p> friends: {props.user.friends}</p>
         </div>
     )
 

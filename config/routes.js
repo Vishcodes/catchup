@@ -16,7 +16,7 @@ router.post('/add/:id', authenticateUser, usersController.add)
 router.post('/accept/:id', authenticateUser, usersController.accept)
 router.post('/cancel/:id', authenticateUser,usersController.cancelreq)
 router.post('/remove/:id', authenticateUser, usersController.remove)
-router.get('/search/:name' , usersController.search)
+router.get('/search/:name' ,authenticateUser, usersController.search)
 
 
 

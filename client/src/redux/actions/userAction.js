@@ -1,5 +1,6 @@
 import axios from '../../components/config/axios'
 
+
 export const startSetUserList = (name,history) => dispatch => {
     axios.get(`catchup/search/${name}`, {
         headers: {
@@ -12,9 +13,9 @@ export const startSetUserList = (name,history) => dispatch => {
       })
 }
 
-export const setUserList = posts => {
+export const setUserList = userlist => {
     return {
         type: 'SET_USERLIST',
-        payload: posts
+        payload: userlist
     }
 }

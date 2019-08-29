@@ -9,9 +9,6 @@ import '../../styleSheet/mainNav.css'
 import {logoutUser} from '../../redux/actions/authAction'
 import { startSetUserList } from '../../redux/actions/userAction'
 
-
-
-
 class MainNav extends React.Component{
   constructor(){
     super()
@@ -30,15 +27,12 @@ class MainNav extends React.Component{
   handleSubmit = e => {
     e.preventDefault()
     const name = this.state.name
-    
     this.props.startSetUserList(name,this.props.history)
-    
   }
 
   handleLogout = () => {
     this.props.logoutUser(this.props.history)
   }
-   
 
     render(){
       return (
@@ -46,7 +40,6 @@ class MainNav extends React.Component{
             <div className="logo">
               <h2><Link to="/catchup/home"> CATCHUP </Link></h2>
             </div>
-
               <div className="search">
                   <form onSubmit={ this.handleSubmit }>
                     <input type="text" placeholder="Search" onChange={ this.handleChange } />
@@ -55,7 +48,6 @@ class MainNav extends React.Component{
                     </button>
                   </form>
               </div>
-            
             <div className="menu">
               <span onClick={ e => console.log('clicked') }>
                 <AccountCircleIcon fontSize="large" />

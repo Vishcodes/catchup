@@ -24,9 +24,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function PostForm() {
   const classes = useStyles();
 //   const bull = <span className={classes.bullet}>•</span>;
+
+
 
   return (
     <Card className={classes.card}>
@@ -62,7 +64,7 @@ export default function SimpleCard() {
                         type="file"
                     />
                     <label htmlFor="contained-button-file">
-                        <Button variant="outlined" component="span" className={classes.button}>
+                        <Button variant="outlined" component="span" className={classes.button} >
                             Add Image
                         </Button>
                     </label>

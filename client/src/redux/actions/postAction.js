@@ -14,8 +14,8 @@ export const startSetPosts = () => dispatch => {
         })
 }
 
-export const startAddPost = () => dispatch => {
-    axios.post(`catchup/posts`, {
+export const startAddPost = (data) => dispatch => {
+    axios.post(`catchup/posts`, data, {
         headers: {
             'x-auth': localStorage.getItem('user-auth')
         }

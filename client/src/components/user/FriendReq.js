@@ -2,34 +2,37 @@ import React from 'react'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 import MainNav from '../common/mainNav'
-import {startSetUserList} from '../../redux/actions/userAction'
+import {startSetPosts} from '../../redux/actions/postAction'
 import UserCard from '../common/userCard'
 import '../../styleSheet/userList.css'
 
 
-class ListUser extends React.Component{
+class FriendReq extends React.Component{
     
-
+    
+componentDidMount(){
+    console.log(this.props)
+}
     render(){
         return(
             <div>
                 <MainNav/>
                 {
-                    !_.isEmpty(this.props.userlist) ? (
+                    !_.isEmpty(this.props.user.friendrequests) ? (
                         <div className="userlist">
-                            {this.props.userlist.map(user => 
+                            {this.props.user.friendrequests.map(user => 
                                 <UserCard
                                     id={user._id}
                                     key={user._id}
-                                    username={user.username}
+                                    title={user.username}
                                     friends={user.friends}
-                                    
+
                                 />
                             )}
                         </div>
                     ) : (
                         <div className="message">
-                            No Profile found
+                            No Friends yet
                         </div>
                     )
                 }
@@ -43,8 +46,10 @@ class ListUser extends React.Component{
 }
 const mapStateToProps = (state) => {
     return {
-        userlist: state.userlist      
+        user: state.user,
+        posts: state.posts,
+        userlist: state.userlist
     }
 }
 
-export default connect(mapStateToProps, {startSetUserList})(ListUser)
+export default connect(mapStateToProps, {startSetPosts})(FriendReq)

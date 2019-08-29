@@ -14,7 +14,6 @@ import defaultImg1 from '../../images/post1.jpg'
 import defaultImg2 from '../../images/post2.jpg'
 import defaultImg3 from '../../images/user.jpg'
 
-
 const useStyles = makeStyles({
   card: {
     margin: '3rem 0',

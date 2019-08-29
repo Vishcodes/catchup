@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import MainNav from '../common/mainNav'
 import PostCard from '../common/postCard'
 import {startSetPosts} from '../../redux/actions/postAction'
-import SimpleCard from '../common/addPost'
+import AddPost from '../common/postForm'
 import '../../styleSheet/home.css'
 
 
@@ -17,16 +17,16 @@ class ListPost extends React.Component{
             <div>
                 <MainNav/>
                 <div className="list">
-                <SimpleCard/>
+                <AddPost/>
 
-                    {this.props.posts.map(post => 
-                        <PostCard key={post._id}
-                            creator={post.creator}
-                            title={post.title}
-                            body={post.body}
-                            image={post.image}
-                            createdAt={post.createdAt}
-                        />)}
+                {this.props.posts.map(post => 
+                    <PostCard key={post._id}
+                        creator={post.creator}
+                        title={post.title}
+                        body={post.body}
+                        image={post.image}
+                        createdAt={post.createdAt}
+                    />)}
                 </div>
             </div>
         )
@@ -38,7 +38,8 @@ class ListPost extends React.Component{
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        posts: state.posts
+        posts: state.posts,
+        userlist: state.userlist
     }
 }
 

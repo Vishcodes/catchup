@@ -72,7 +72,7 @@ module.exports.add = (req, res) => {
                                             if(!newUser.friendrequests.includes(userId)){
                                                 newUser.friendrequests.push(userId)
                                                 newUser.save()
-                                                res.json('req send')
+                                                res.json({user})
                                             }else{
                                                 res.json('error')
                                             }
@@ -124,7 +124,7 @@ module.exports.accept =(req, res) => {
                                             newUser.sentrequests.splice(newUser.sentrequests.indexOf(userId))
                                             newUser.friends.push(userId)
                                             newUser.save()
-                                            res.json('accepted')
+                                            res.json({user})
                                         } else {
                                             res.json('no request')
                                         }
@@ -169,7 +169,7 @@ module.exports.cancelreq = (req, res) => {
                             if(newUser.friendrequests.includes(userId)){
                                 newUser.friendrequests.splice(newUser.friendrequests.indexOf(userId), 1)
                                 newUser.save()
-                                res.json('Friend request canceled')
+                                res.json({user})
                             }else{
                                 res.status('404').json('no request found')
                             }
