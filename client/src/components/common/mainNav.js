@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import MenuIcon from '@material-ui/icons/Menu'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import '../../styleSheet/mainNav.css'
 import {logoutUser} from '../../redux/actions/authAction'
 import { startSetUserList } from '../../redux/actions/userAction'
+import SideBar from './sideBar'
+import {startSetAllFriends} from '../../redux/actions/userAction'
 
 class MainNav extends React.Component{
   constructor(){
@@ -30,8 +30,9 @@ class MainNav extends React.Component{
     this.props.startSetUserList(name,this.props.history)
   }
 
-  handleLogout = () => {
-    this.props.logoutUser(this.props.history)
+
+  handleMenu = () => {
+    this.props.startSetAllUser()
   }
 
     render(){
@@ -52,12 +53,7 @@ class MainNav extends React.Component{
               <span onClick={ e => console.log('clicked') }>
                 <AccountCircleIcon fontSize="large" />
               </span>
-              <span onClick={ e => console.log('clicked') }>
-                <MenuIcon fontSize="large" />
-              </span>
-              <span onClick={ this.handleLogout }>
-                <ExitToAppIcon fontSize="large" />
-              </span>
+              <SideBar onClick={this.handleMenu} />
             </div>
           </div>
       )
@@ -65,7 +61,8 @@ class MainNav extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  userlist: state.userlist
 })
 
-export default connect(mapStateToProps, {logoutUser, startSetUserList})(withRouter(MainNav))
+export default connect(mapStateToProps, {logoutUser, startSetUserList,startSetAllFriends})(withRouter(MainNav))

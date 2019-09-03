@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 import MainNav from '../common/mainNav'
-import {startSetPosts} from '../../redux/actions/postAction'
-import UserCard from '../common/userCard'
+import {StartSetUser} from '../../redux/actions/authAction'
+import FriendCard from '../common/friendCard'
 import '../../styleSheet/userList.css'
 
 
@@ -21,12 +21,11 @@ componentDidMount(){
                     !_.isEmpty(this.props.user.friendrequests) ? (
                         <div className="userlist">
                             {this.props.user.friendrequests.map(user => 
-                                <UserCard
-                                    id={user._id}
+                                <FriendCard
+                                    id={this.props.userlist._id}
                                     key={user._id}
-                                    title={user.username}
+                                    name={this.props.user.username}
                                     friends={user.friends}
-
                                 />
                             )}
                         </div>
@@ -52,4 +51,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {startSetPosts})(FriendReq)
+export default connect(mapStateToProps, {StartSetUser})(FriendReq)

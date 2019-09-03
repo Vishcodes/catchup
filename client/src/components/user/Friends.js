@@ -1,30 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import _ from 'lodash'
+import 'react-toastify/dist/ReactToastify.css';
 import MainNav from '../common/mainNav'
-import {startSetPosts} from '../../redux/actions/postAction'
-import UserCard from '../common/userCard'
+import {startSetAllFriends} from '../../redux/actions/userAction'
+import FriendCard from '../common/friendCard'
 import '../../styleSheet/userList.css'
 
 
-class Friends extends React.Component{
-    
-    
-componentDidMount(){
-    console.log(this.props)
-}
+class ListFriend extends React.Component{
+
     render(){
         return(
             <div>
                 <MainNav/>
+              
                 {
                     !_.isEmpty(this.props.user.friends) ? (
                         <div className="userlist">
-                            {this.props.user.friends.map(user => 
-                                <UserCard
+                            {this.props.userlist.map(user => 
+                                <FriendCard
                                     id={user._id}
                                     key={user._id}
-                                    title={user.username}
+                                    username={user.username}
                                     friends={user.friends}
                                     
                                 />
@@ -32,7 +30,7 @@ componentDidMount(){
                         </div>
                     ) : (
                         <div className="message">
-                            No Friends yet
+                            No Friends
                         </div>
                     )
                 }
@@ -47,9 +45,8 @@ componentDidMount(){
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        posts: state.posts,
         userlist: state.userlist
     }
 }
 
-export default connect(mapStateToProps, {startSetPosts})(Friends)
+export default connect(mapStateToProps, {startSetAllFriends})(ListFriend)

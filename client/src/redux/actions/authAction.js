@@ -1,4 +1,5 @@
 import axios from '../../components/config/axios'
+import { toast } from 'react-toastify'
 
 export const registerNewUser = (data, history) => dispatch => {
     axios.post(`catchup/register`, data)
@@ -34,23 +35,39 @@ export const logoutUser = history => dispatch => {
     .catch( err => console.log(err))
 }
 
-export const startAddFriend = (id) => dispatch => {
-    console.log(id)
+export const startAddFriend = (id, history) => dispatch => {
     axios.post(`catchup/add/${id}`,{},{
       headers: {
         'x-auth': localStorage.getItem('user-auth')
       }
     })
     .then(response => {
-        console.log(response.data)
         dispatch(setUser(response.data))
+        toast.success("Request sent successfully", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 60
+        })
+        history.push('/catchup/users')
     })
     .catch(err => {
-      (console.log(err))
+        toast.error("Request could not be sent", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 60
+        })
     })
 }
 
-export const startRemoveFriend = (id) => dispatch => {
+export const startRemoveFriend = (id, history) => dispatch => {
     console.log(id)
     axios.post(`catchup/cancel/${id}`,{},{
       headers: {
@@ -61,9 +78,28 @@ export const startRemoveFriend = (id) => dispatch => {
     .then(response => {
         console.log(response.data)
         dispatch(setUser(response.data))
+        toast.success("Request Cancelled", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 60
+        })
+        history.push('/catchup/users')
     })
     .catch(err => {
       (console.log(err))
+        toast.error("Request could not be cancelled", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 60
+        })
     })
 }
 

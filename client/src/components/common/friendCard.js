@@ -12,7 +12,7 @@ import TextsmsIcon from '@material-ui/icons/Textsms';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import defaultImg from '../../images/user3.jpg'
 import { connect } from 'react-redux'
-import { startAddFriend,startRemoveFriend } from '../../redux/actions/authAction';
+import { startSetAllFriends} from '../../redux/actions/userAction';
 import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
 import _ from 'lodash'
 
@@ -24,19 +24,9 @@ const useStyles = makeStyles({
   },
 });
 
-function UserCard(props) {
+function FriendCard(props) {
   const classes = useStyles();
-  const handleSubmit = (e) => {
-    const id = e.target.id
-    console.log(id)
-    props.startAddFriend(id, props.history)
-  }
-
-  const handleCancel = (e) => {
-    const id = e.target.id
-    console.log(id)
-    props.startRemoveFriend(id, props.history)
-  }
+  props.startSetAllFriends()
 
   return (
    
@@ -57,7 +47,7 @@ function UserCard(props) {
             {props.username}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.friends.length} - Friends
+            {props.id}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -69,14 +59,12 @@ function UserCard(props) {
                   id={props.id}
                   color='primary'
                   style={{ cursor: 'pointer' }}
-                  onClick={handleSubmit}
                 />
             ) : (
                 <PersonAddDisabledIcon
                   id={props.id}
                   color='primary'
                   style={{ cursor: 'pointer'}}
-                  onClick={handleCancel}
                 />
                 )
           }
@@ -97,4 +85,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {startAddFriend, startRemoveFriend})(withRouter(UserCard))
+export default connect(mapStateToProps, {startSetAllFriends})(withRouter(FriendCard))

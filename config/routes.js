@@ -17,7 +17,8 @@ router.post('/accept/:id', authenticateUser, usersController.accept)
 router.post('/cancel/:id', authenticateUser,usersController.cancelreq)
 router.post('/remove/:id', authenticateUser, usersController.remove)
 router.get('/search/:name' ,authenticateUser, usersController.search)
-
+router.get('/users', usersController.list)
+router.get('/friends', authenticateUser, usersController.friendlist)
 
 
 router.post('/profile', authenticateUser, profileController.create)

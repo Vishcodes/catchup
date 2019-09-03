@@ -38,8 +38,7 @@ class ListPost extends React.Component{
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        posts: state.posts,
-        userlist: state.userlist
+        posts: state.posts
     }
 }
 

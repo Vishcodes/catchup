@@ -11,8 +11,7 @@ const configureStore = () => {
     const state = createStore(combineReducers({
         user: authReducer,
         posts: postReducer,
-        userlist: userReducer
-        
+        userlist: userReducer     
     
         // posts: postReducer
     }), compose(applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))

@@ -74,30 +74,30 @@ module.exports.add = (req, res) => {
                                                 newUser.save()
                                                 res.json({user})
                                             }else{
-                                                res.json('error')
+                                                res.json({msg: 'error'})
                                             }
                                         }else{
-                                            res.json('already friend')
+                                            res.json({msg: 'already friend'})
                                         }
                                     }else{
-                                        res.status('404').json('user not found')
+                                        res.status('404').json({msg:'user not found'})
                                     }
                                 })
                                 .catch(err =>{
                                     res.status('404').json(err)
                                 })
                         }else{
-                            res.json('req pending')
+                            res.json({msg: 'req pending'})
                         }
                     }else {
-                        res.json('profile in requested list')
+                        res.json({msg: 'profile in requested list'})
                     }
                    
                 }else{
-                    res.json('you are already friend')
+                    res.json({msg: 'you are already friend'})
                 }
             }else {
-                res.json('Are you logged in ???')
+                res.json({msg: 'Are you logged in ???'})
             }
         })
         .catch(err => {
@@ -239,4 +239,27 @@ module.exports.search = (req, res) => {
             res.json(err)
         })
 }
+
+module.exports.list = (req, res) => {
+    User.find()
+        .then(users => {
+            res.json(users)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+}
+
+module.exports.friendlist = (req, res) => {
+    const id=req.user._id
+    User.find({friends: id})
+        .then(users => {
+            res.json(users)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+}
+
+
 

@@ -6,6 +6,7 @@ import ListUser from './components/user/userList'
 import Account from './components/user/Account'
 import Friends from './components/user/Friends'
 import FriendReq from './components/user/FriendReq'
+import SideBar from './components/common/sideBar'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path='/catchup/account' component={Account} exact />
               <Route path='/catchup/friends' component={Friends} exact />
               <Route path='/catchup/friendreq' component={FriendReq} exact />
+              <Route path='/catchup/sidebar' component={SideBar} exact/>
             </Switch>
       </div>
     </BrowserRouter>
